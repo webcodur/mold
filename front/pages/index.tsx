@@ -13,7 +13,7 @@ export default function Home() {
       <br></br>
       <Link href='/'>home</Link>
       <br></br>
-      <Link href='/test'>Link-Test</Link>
+      <Link href='/useReducerTest'>useReducerTest</Link>
       <br></br>
       <button onClick={moveToTest}>router-Test</button>
     </>

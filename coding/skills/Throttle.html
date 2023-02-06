@@ -1,0 +1,40 @@
+// html
+<input id="search" type="search" name="search" value="" />
+
+<script>
+  var debounce = null;
+  var throttle = null;
+
+  function keyUpFn(el) {
+    // normal
+    console.log('normal', el.target.value, new Date().getTime());
+
+    // debounce
+    clearTimeout(debounce);
+    debounce = setTimeout(() => {
+      console.log('debounce', el.target.value, new Date().getTime());
+    }, 500);
+
+
+    // throttle
+    if (!throttle) {
+      setTimeout(() => {
+        console.log('throttle', throttle, new Date().getTime());
+        throttle = null;
+      }, 500);
+    }
+    throttle = el.target.value;
+  }
+
+  document.getElementById("search").addEventListener('keyup', keyUpFn);
+
+  // normal h         1583658583270
+  // normal he        1583658583582
+  // normal hel       1583658583878
+  // normal hell      1583658584182
+  // throttle hell    1583658584271
+  // 입력이 끝남
+  // normal hello     1583658584534
+  // debounce hello   1583658585036
+  // throttle hello   1583658585536
+</script>
