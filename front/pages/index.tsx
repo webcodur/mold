@@ -1,23 +1,27 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import CkScripts from '../component/Scripts'
+import { useState } from 'react'
 
 export default function Home() {
-  const router = useRouter()
-  const moveToTest = () => {
-    router.push('/test')
+  const [data, setData] = useState<any[]>([])
+  const getJsonData = async () => {
+    fetch("http://localhost:5000/todos")
+    .then(res => res.json())
+    .then(response => {
+      setData(response)
+    })
   }
 
   return (
     <>
-      <h1>hello world</h1>
-      <br></br>
-      <Link href='/'>home</Link>
-      <br></br>
-      <Link href='/useReducerTest'>useReducerTest</Link>
-      <br></br>
-      <button onClick={moveToTest}>router-Test</button>
+      {/* <div>
+        <button onClick={getJsonData}>getJsonData</button>
+      </div>
+      
+      {data.map((ele, idx) => (<div key={idx}>
+        {ele.content}
+      </div>))} */}
     </>
   )
 }
-
-// nextJS 페이지 이동 두 가지 방식 Link, Router

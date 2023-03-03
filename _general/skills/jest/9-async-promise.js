@@ -31,15 +31,17 @@ test("2초 후 실행", () => {
   return expect(fn.getAge()).resolves.toBe(30);
 }); // pass
 
+// toBe
 test("2초 후 실행", () => {
   return expect(fn.getName()).resolves.toBe("Mike");
 }); // fail
 
+// toMatch
 test("2초 후 실행", () => {
   return expect(fn.getName()).rejects.toMatch("error");
 }); // pass
 
-// async await : return 대신 await
+// async await - return 대신 await
 test("2초 후 실행", async () => {
   const age = await fn.getAge();
   expect(age).toBe(30);
