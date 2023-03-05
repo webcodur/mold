@@ -1,20 +1,37 @@
-// import express, { Request, Response, NextFunction} from 'express'
-
 const express = require("express");
+const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const dotenv = require('dotenv')
 const path = require("path");
 
-const app = express();
-
+dotenv.config()
+const app = express()
 app.set("port", process.env.PORT || 4000);
 
+app.use(morgan('dev'));
+app.use('/', express.static(path.join(__dirname, 'public')))
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(session({
+  resave:false,
+  saveUninitialized:false,
+  secret:process.env.COOKIE_SECRET,
+  cookie:{
+    httpOnly:true,
+    secure:false,
+  },
+  name:'session-cookie',
+}))
+
 app.get("/", (req: any, res: any) => {
-  // res.send('Hello Express') // local-4000 으로 스트링 메시지
   res.sendFile(path.join(__dirname, "/index.html")); // index.html
 });
 
 app.use(
   (req: any, res: any, next: any) => {
-    console.log("모든 요청에 실행된다");
+    console.log("모든 요청에 실행됨");
     next();
   },
   (req: any, res: any) => {
