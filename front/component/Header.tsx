@@ -9,6 +9,8 @@ const Header = () => {
       <Link href="/wyziwig">wyziwig</Link> <br/>
       <Link href="/redux">redux</Link> <br/>
       <Link href="/pagination">pagination</Link> <br/>
+      <Link href="/useCallback">useCallback</Link> <br/>
+      <Link href="/useMemo">useMemo</Link> <br/>
     </>
   );
 };

@@ -25,9 +25,18 @@ function Pagination(props:Props) {
               {i + 1}
             </Button>
           ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        <Button 
+          onClick = {() => setPage(page + 1)} 
+          disabled = {page === numPages}>
           &gt;
         </Button>
+        <Button >←</Button>
+        <Button >«</Button>
+        <Button >‹</Button>
+        <Button >›</Button>
+        <Button >»</Button>
+        <Button >→</Button>
+
       </Nav>
     </>
   );
